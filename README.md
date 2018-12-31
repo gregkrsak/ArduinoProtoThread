@@ -1,2 +1,2 @@
 # arduino_led_flash
-Simple, single LED flasher.
+LED flashing sketch built around a multi-taskable state machine.
