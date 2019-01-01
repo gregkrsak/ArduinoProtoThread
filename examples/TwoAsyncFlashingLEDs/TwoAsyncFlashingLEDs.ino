@@ -1,7 +1,7 @@
-// ArduinoProtoThreadExample
-// ArduinoProtoThreadExample.ino
+// ArduinoProtoThread
+// examples/TwoAsyncFlashingLEDs.ino
 //
-// The main sketch file of the ArduinoProtoThreadExample project.
+// Flashes two LEDs at different blink rates.
 //
 // https://github.com/gregkrsak/ArduinoProtoThread
 //
@@ -24,10 +24,11 @@
 //
 
 
+// ArduinoProtoThread class
 #include "ArduinoProtoThread.hpp"
-
+// Required for the state machine enums
 #include "ArduinoProtoThreadStateMachine.hpp"
-
+// Hardware pins
 #include "pins.h"
 
 
@@ -100,4 +101,4 @@ void loop()
   protoThreadB->timeSlice();
 }
 
-// End of ArduinoProtoThreadExample.ino
+// End of TwoAsyncFlashingLEDs.ino
