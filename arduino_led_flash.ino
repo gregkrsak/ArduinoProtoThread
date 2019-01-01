@@ -70,10 +70,12 @@ class LedFlasher : public ArduinoProtoThreadDelegate
 };
 
 
-// Main protothread instance
-ArduinoProtoThread *protoThread;
-// Protothread delegate for an LED flasher
-LedFlasher *flasher;
+// Main protothread instances
+ArduinoProtoThread *protoThreadA;
+ArduinoProtoThread *protoThreadB;
+// Protothread delegates for LED flashers
+LedFlasher *flasherA;
+LedFlasher *flasherB;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -82,12 +84,17 @@ LedFlasher *flasher;
 void setup()
 {
   // Initialize delegates
-  flasher = new LedFlasher(OUTPUT_PIN_LED);
+  flasherA = new LedFlasher(OUTPUT_PIN_LED_A);
+  flasherB = new LedFlasher(OUTPUT_PIN_LED_B);
   // Initialize protothreads
-  protoThread = new ArduinoProtoThread();
-  protoThread->delegateCallbacksTo(flasher);
-  protoThread->setExecutionIntervalTo(500);
-  protoThread->changeStateTo(Start);
+  protoThreadA = new ArduinoProtoThread();
+  protoThreadB = new ArduinoProtoThread();
+  protoThreadA->delegateCallbacksTo(flasherA);
+  protoThreadB->delegateCallbacksTo(flasherB);
+  protoThreadA->setExecutionIntervalTo(1000);
+  protoThreadB->setExecutionIntervalTo(100);
+  protoThreadA->changeStateTo(Start);
+  protoThreadB->changeStateTo(Start);
 }
 
 
@@ -96,7 +103,8 @@ void setup()
 //////////////////////////////////////////////////////////////////////////////////////////////////
 void loop()
 {
-  protoThread->timeSlice();
+  protoThreadA->timeSlice();
+  protoThreadB->timeSlice();
 }
 
 // End of ArduinoProtoThreadExample.ino

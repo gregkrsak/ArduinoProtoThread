@@ -40,7 +40,6 @@ class ArduinoProtoThread : public ArduinoProtoThreadStateMachine
     ~ArduinoProtoThread() { }
 
     void setExecutionIntervalTo(unsigned long newIntervalInMs);
-    unsigned long executionInterval();
 
     // From ArduinoProtoThreadStateMachine
     void changeStateTo(ArduinoProtoThreadState newState);
@@ -50,9 +49,7 @@ class ArduinoProtoThread : public ArduinoProtoThreadStateMachine
 
   protected:
     unsigned long timeDifference;
-    unsigned long interval;
-
-  private:
+    unsigned long executionInterval;
     unsigned long previousExecutionTime;
 };
 

@@ -40,19 +40,7 @@
 //
 void ArduinoProtoThread::setExecutionIntervalTo(unsigned long newIntervalInMs)
 {
-  this->interval = newIntervalInMs;
-}
-
-
-//
-// Member Function: executionInterval
-// Purpose: Returns the protothread execution interval.
-// Returns: unsigned long
-//
-unsigned long ArduinoProtoThread::executionInterval()
-{
-  unsigned long result = this->interval;
-  return result;
+  this->executionInterval = newIntervalInMs;
 }
 
 
@@ -106,7 +94,6 @@ void ArduinoProtoThread::timeSlice()
   unsigned long currentTime;
   ArduinoProtoThreadState state;
 
-  currentTime = millis();
   state = this->currentState();
 
   switch (state)
@@ -120,8 +107,9 @@ void ArduinoProtoThread::timeSlice()
       this->changeStateTo(Waiting);
       break;
     case Waiting:
+      currentTime = millis();
       this->timeDifference = currentTime - this->previousExecutionTime;
-      if (timeDifference > this->executionInterval())
+      if (timeDifference > this->executionInterval)
       {
         this->previousExecutionTime = currentTime;
         this->changeStateTo(Running);

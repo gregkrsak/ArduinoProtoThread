@@ -25,6 +25,7 @@
 #pragma once
 
 // The output for this program is just a simple flashing LED on pin 13
-#define OUTPUT_PIN_LED 13
+#define OUTPUT_PIN_LED_A 13
+#define OUTPUT_PIN_LED_B 12
 
 // End of pins.h
