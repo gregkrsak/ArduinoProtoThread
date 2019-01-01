@@ -47,18 +47,10 @@ class LedFlasher : public ArduinoProtoThreadDelegate
     }
     void onRunning()
     {
-      static bool ledState = LOW;
       // Flip-flop the LED state
-      if (ledState == HIGH)
-      {
-        ledState = LOW;
-      }
-      else
-      {
-        ledState = HIGH;
-      }
+      this->ledState ^= HIGH;
       // Send the state to hardware
-      digitalWrite(this->outputPin, ledState);
+      digitalWrite(this->outputPin, this->ledState);
     }
     void onKill()
     {
@@ -66,6 +58,7 @@ class LedFlasher : public ArduinoProtoThreadDelegate
     }
 
   protected:
+    bool ledState = LOW;
     int outputPin;
 };
 
