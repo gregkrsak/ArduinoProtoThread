@@ -35,7 +35,7 @@
 // Member Function: setEecutionIntervalTo
 // Purpose: Sets the protothread execution interval.
 // Parameters:
-//  newInterval: Try to run this protothread every X number of milliseconds.
+//  newIntervalInMs: Try to run this protothread every X number of milliseconds.
 // Returns: void
 //
 void ArduinoProtoThread::setExecutionIntervalTo(unsigned long newIntervalInMs)
@@ -59,6 +59,8 @@ unsigned long ArduinoProtoThread::executionInterval()
 //
 // Member Function: changeStateTo
 // Purpose: Changes the state of the protothread's state machine.
+// Parameters:
+//  newState: The new state for the protothread. See ArduinoProtoThreadStateMachine.hpp for details.
 // Returns: void
 //
 void ArduinoProtoThread::changeStateTo(ArduinoProtoThreadState newState)
@@ -83,6 +85,8 @@ ArduinoProtoThreadState ArduinoProtoThread::currentState()
 //
 // Member Function: delegateCallbacksTo
 // Purpose: Sets the protothread's delegate.
+// Parameters:
+//  *object: The protothread's delegate. See ArduinoProtoThreadDelegate.hpp for details.
 // Returns: void
 //
 void ArduinoProtoThread::delegateCallbacksTo(ArduinoProtoThreadDelegate *object)

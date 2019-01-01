@@ -1,7 +1,7 @@
 // ArduinoProtoThread
 // ArduinoProtoThreadDelegate.hpp
 //
-// Abstract class that defines a delegate object for ArduinoProtoThread state transitionss.
+// Abstract class that defines a delegate object for ArduinoProtoThread state transitions.
 //
 // https://github.com/gregkrsak/ArduinoProtoThread
 //
