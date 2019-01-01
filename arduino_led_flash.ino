@@ -31,7 +31,7 @@
 #include "pins.h"
 
 
-// Main proto thread instance
+// Main protothread instance
 ArduinoProtoThread *protoThread;
 
 
@@ -44,7 +44,7 @@ void setup()
   pinMode(OUTPUT_PIN_LED, OUTPUT);
   digitalWrite(OUTPUT_PIN_LED, LOW);
   
-  // Initialize proto threads
+  // Initialize protothreads
   protoThread = new ArduinoProtoThread();
   protoThread->setExecutionIntervalTo(500);
   protoThread->changeStateTo(Running);

@@ -1,7 +1,7 @@
 // ArduinoProtoThread
 // ArduinoProtoThread.cpp
 //
-// Implements a proto thread API, allowing Arduino compatibles to multitask.
+// Implements a protothread API, allowing Arduino compatibles to multitask.
 //
 // Copyright 2018, 2019 Greg M. Krsak <greg.krsak@gmail.com>
 //
@@ -33,9 +33,9 @@
 
 //
 // Member Function: setEecutionIntervalTo
-// Purpose: Sets the proto thread execution interval.
+// Purpose: Sets the protothread execution interval.
 // Parameters:
-//  newInterval: Try to run this proto thread every X number of milliseconds.
+//  newInterval: Try to run this protothread every X number of milliseconds.
 // Returns: void
 //
 void ArduinoProtoThread::setExecutionIntervalTo(unsigned long newIntervalInMs)
@@ -46,7 +46,7 @@ void ArduinoProtoThread::setExecutionIntervalTo(unsigned long newIntervalInMs)
 
 //
 // Member Function: executionInterval
-// Purpose: Returns the proto thread execution interval.
+// Purpose: Returns the protothread execution interval.
 // Returns: unsigned long
 //
 unsigned long ArduinoProtoThread::executionInterval()
@@ -58,7 +58,7 @@ unsigned long ArduinoProtoThread::executionInterval()
 
 //
 // Member Function: changeStateTo
-// Purpose: Changes the state of the proto thread's state machine.
+// Purpose: Changes the state of the protothread's state machine.
 // Returns: void
 //
 void ArduinoProtoThread::changeStateTo(ArduinoProtoThreadState newState)
@@ -70,7 +70,7 @@ void ArduinoProtoThread::changeStateTo(ArduinoProtoThreadState newState)
 
 //
 // Member Function: currentState
-// Purpose: Returns the state of the proto thread's state machine.
+// Purpose: Returns the state of the protothread's state machine.
 // Returns: enum
 //
 ArduinoProtoThreadState ArduinoProtoThread::currentState()
@@ -102,7 +102,7 @@ void ArduinoProtoThread::timeSlice()
       break;
     case Running:
       // BEGIN MAIN PROGRAM LOOP //////////
-      // Does the proto thread need to be executed?
+      // Does the protothread need to be executed?
       if (timeDifference > this->executionInterval())
       {
         // Reset the variable that holds the last time it executed

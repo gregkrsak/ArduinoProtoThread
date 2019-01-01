@@ -1,7 +1,7 @@
 // ArduinoProtoThread
 // ArduinoProtoThread.hpp
 //
-// Defines a proto thread API, allowing Arduino compatibles to multitask.
+// Defines a protothread API, allowing Arduino compatibles to multitask.
 //
 // https://github.com/gregkrsak/ArduinoProtoThread
 //
@@ -31,7 +31,7 @@
 //
 // Class: ArduinoProtoThread
 // Derived from: ArduinoProtoThreadStateMachine
-// Purpose: Defines a proto thread API, allowing Arduino compatibles to multitask.
+// Purpose: Defines a protothread API, allowing Arduino compatibles to multitask.
 //
 class ArduinoProtoThread : public ArduinoProtoThreadStateMachine
 {
