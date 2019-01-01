@@ -25,15 +25,15 @@
 
 #pragma once
 
-#include "APTStateMachine.hpp"
+#include "ArduinoProtoThreadStateMachine.hpp"
 
 
 //
 // Class: ArduinoProtoThread
-// Derived from: APTStateMachine
+// Derived from: ArduinoProtoThreadStateMachine
 // Purpose: Defines a proto thread API, allowing Arduino compatibles to multitask.
 //
-class ArduinoProtoThread : public APTStateMachine
+class ArduinoProtoThread : public ArduinoProtoThreadStateMachine
 {
   public:
     ArduinoProtoThread() { }
@@ -42,9 +42,9 @@ class ArduinoProtoThread : public APTStateMachine
     void setExecutionIntervalTo(unsigned long newIntervalInMs);
     unsigned long executionInterval();
 
-    // From APTStateMachine
-    void changeStateTo(APTStates newState);
-    APTStates currentState();
+    // From ArduinoProtoThreadStateMachine
+    void changeStateTo(ArduinoProtoThreadState newState);
+    ArduinoProtoThreadState currentState();
     void timeSlice();
 
   protected:

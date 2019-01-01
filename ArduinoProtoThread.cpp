@@ -61,7 +61,7 @@ unsigned long ArduinoProtoThread::executionInterval()
 // Purpose: Changes the state of the proto thread's state machine.
 // Returns: void
 //
-void ArduinoProtoThread::changeStateTo(APTStates newState)
+void ArduinoProtoThread::changeStateTo(ArduinoProtoThreadState newState)
 {
   this->state = newState;
   return;
@@ -73,9 +73,9 @@ void ArduinoProtoThread::changeStateTo(APTStates newState)
 // Purpose: Returns the state of the proto thread's state machine.
 // Returns: enum
 //
-APTStates ArduinoProtoThread::currentState()
+ArduinoProtoThreadState ArduinoProtoThread::currentState()
 {
-  APTStates result = this->state;
+  ArduinoProtoThreadState result = this->state;
   return result;
 }
 
@@ -90,7 +90,7 @@ void ArduinoProtoThread::timeSlice()
   static bool ledState = LOW;
   unsigned long currentTime;
   unsigned long timeDifference;
-  APTStates state;
+  ArduinoProtoThreadState state;
 
   currentTime = millis();
   timeDifference = currentTime - this->previousExecutionTime;

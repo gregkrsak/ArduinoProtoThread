@@ -1,5 +1,5 @@
 // ArduinoProtoThread
-// APTStateMachine.hpp
+// ArduinoProtoThreadStateMachine.hpp
 //
 // Abstract class that defines a state machine for ArduinoProtoThread.
 //
@@ -31,23 +31,23 @@
 
 
 // Used for state machines
-enum APTStates { WillRun, Running, JustRan, WillStop, Stopped };
+enum ArduinoProtoThreadState { WillRun, Running, JustRan, WillStop, Stopped };
 
 
 //
-// Abstract class: APTStateMachine
+// Abstract class: ArduinoProtoThreadStateMachine
 // Purpose: Defines the API for a state machine.
 //
-class APTStateMachine
+class ArduinoProtoThreadStateMachine
 {
   public:
-    inline virtual ~APTStateMachine() = PURE_VIRTUAL;
-    virtual void changeStateTo(APTStates newState) = PURE_VIRTUAL;
-    virtual APTStates currentState();
+    inline virtual ~ArduinoProtoThreadStateMachine() = PURE_VIRTUAL;
+    virtual void changeStateTo(ArduinoProtoThreadState newState) = PURE_VIRTUAL;
+    virtual ArduinoProtoThreadState currentState();
 
   protected:
-    APTStates state;
+    ArduinoProtoThreadState state;
 };
-APTStateMachine::~APTStateMachine() { }
+ArduinoProtoThreadStateMachine::~ArduinoProtoThreadStateMachine() { }
 
-// End of APTStateMachine.hpp
+// End of ArduinoProtoThreadStateMachine.hpp

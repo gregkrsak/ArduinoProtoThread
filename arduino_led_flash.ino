@@ -26,7 +26,7 @@
 
 #include "ArduinoProtoThread.hpp"
 
-#include "APTStateMachine.hpp"
+#include "ArduinoProtoThreadStateMachine.hpp"
 
 #include "pins.h"
 
