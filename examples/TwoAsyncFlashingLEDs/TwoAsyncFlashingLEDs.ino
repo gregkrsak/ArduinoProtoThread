@@ -1,5 +1,5 @@
 // ArduinoProtoThread
-// examples/TwoAsyncFlashingLEDs.ino
+// examples/TwoAsyncFlashingLEDs/TwoAsyncFlashingLEDs.ino
 //
 // Flashes two LEDs at different blink rates.
 //

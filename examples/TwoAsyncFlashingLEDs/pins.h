@@ -1,5 +1,5 @@
-// TwoAsyncFlashingLEDs
-// pins.h
+// ArduinoProtoThread
+// examples/TwoAsyncFlashingLEDs/pins.h
 //
 // https://github.com/gregkrsak/ArduinoProtoThread
 //
