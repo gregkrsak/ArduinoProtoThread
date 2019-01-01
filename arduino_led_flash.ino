@@ -34,39 +34,39 @@
 // Sample delegate object
 class LedFlasher : public ArduinoProtoThreadDelegate
 {
-public:
-  LedFlasher(int pin)
-  {
-    this->outputPin = pin;
-  }
-  ~LedFlasher() { }
-  
-  void onStart()
-  {
-    pinMode(this->outputPin, OUTPUT);
-  }
-  void onRunning()
-  {
-    static bool ledState = LOW;
-    // Flip-flop the LED state
-    if (ledState == HIGH)
+  public:
+    LedFlasher(int pin)
     {
-      ledState = LOW;
+      this->outputPin = pin;
     }
-    else
-    {
-      ledState = HIGH;
-    }
-    // Send the state to hardware
-    digitalWrite(this->outputPin, ledState);
-  }
-  void onKill()
-  {
-    return;
-  }
+    ~LedFlasher() { }
 
-protected:
-  int outputPin;
+    void onStart()
+    {
+      pinMode(this->outputPin, OUTPUT);
+    }
+    void onRunning()
+    {
+      static bool ledState = LOW;
+      // Flip-flop the LED state
+      if (ledState == HIGH)
+      {
+        ledState = LOW;
+      }
+      else
+      {
+        ledState = HIGH;
+      }
+      // Send the state to hardware
+      digitalWrite(this->outputPin, ledState);
+    }
+    void onKill()
+    {
+      return;
+    }
+
+  protected:
+    int outputPin;
 };
 
 

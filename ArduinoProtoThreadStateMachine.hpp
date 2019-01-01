@@ -44,6 +44,7 @@ class ArduinoProtoThreadStateMachine
 {
   public:
     inline virtual ~ArduinoProtoThreadStateMachine() = PURE_VIRTUAL;
+
     virtual void changeStateTo(ArduinoProtoThreadState newState) = PURE_VIRTUAL;
     virtual ArduinoProtoThreadState currentState();
     virtual void delegateCallbacksTo(ArduinoProtoThreadDelegate *object);

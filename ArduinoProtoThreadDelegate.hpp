@@ -34,12 +34,12 @@
 
 class ArduinoProtoThreadDelegate
 {
-public:
-	inline virtual ~ArduinoProtoThreadDelegate() = PURE_VIRTUAL;
+  public:
+    inline virtual ~ArduinoProtoThreadDelegate() = PURE_VIRTUAL;
 
-	virtual void onStart() = PURE_VIRTUAL;
-	virtual void onRunning() = PURE_VIRTUAL;
-	virtual void onKill() = PURE_VIRTUAL;
+    virtual void onStart() = PURE_VIRTUAL;
+    virtual void onRunning() = PURE_VIRTUAL;
+    virtual void onKill() = PURE_VIRTUAL;
 };
 ArduinoProtoThreadDelegate::~ArduinoProtoThreadDelegate() { }
 
