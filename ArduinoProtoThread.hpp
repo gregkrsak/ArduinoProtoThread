@@ -1,7 +1,7 @@
 // ArduinoProtoThread
 // ArduinoProtoThread.hpp
 //
-// The header for the primary class of the ArduinoProtoThread project.
+// Defines a proto thread API, allowing Arduino compatibles to multitask.
 //
 // https://github.com/gregkrsak/ArduinoProtoThread
 //
@@ -31,7 +31,7 @@
 //
 // Class: ArduinoProtoThread
 // Derived from: APTStateMachine
-// Purpose: The main class of the sketch.
+// Purpose: Defines a proto thread API, allowing Arduino compatibles to multitask.
 //
 class ArduinoProtoThread : public APTStateMachine
 {

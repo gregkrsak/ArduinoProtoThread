@@ -31,7 +31,7 @@
 #include "pins.h"
 
 
-// Main protoThread instance
+// Main proto thread instance
 ArduinoProtoThread *protoThread;
 
 
