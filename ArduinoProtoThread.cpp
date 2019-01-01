@@ -109,7 +109,7 @@ void ArduinoProtoThread::timeSlice()
     case Waiting:
       currentTime = millis();
       this->timeDifference = currentTime - this->previousExecutionTime;
-      if (timeDifference > this->executionInterval)
+      if (this->timeDifference > this->executionInterval)
       {
         this->previousExecutionTime = currentTime;
         this->changeStateTo(Running);
