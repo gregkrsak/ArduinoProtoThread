@@ -30,7 +30,7 @@
 
 //
 // Class: ArduinoProtoThread
-// Derived from: MainProgram
+// Derived from: APTStateMachine
 // Purpose: The main class of the sketch.
 //
 class ArduinoProtoThread : public APTStateMachine
