@@ -1,5 +1,7 @@
-// ArduinoProtoThreadExample
-// pins.h
+// ArduinoProtoThread
+// ArduinoProtoThreadDelegate.hpp
+//
+// Abstract class that defines a delegate object for ArduinoProtoThread state transitions.
 //
 // https://github.com/gregkrsak/ArduinoProtoThread
 //
@@ -24,8 +26,21 @@
 
 #pragma once
 
-// The output for this program is just a simple flashing LED on pin 13
-#define OUTPUT_PIN_LED_A 13
-#define OUTPUT_PIN_LED_B 12
+#include "ArduinoProtoThreadStateMachine.hpp"
 
-// End of pins.h
+// Used for pure virtual functions. I think this looks cleaner and is more self-documenting.
+#define PURE_VIRTUAL 0
+
+
+class ArduinoProtoThreadDelegate
+{
+  public:
+    inline virtual ~ArduinoProtoThreadDelegate() = PURE_VIRTUAL;
+
+    virtual void onStart() = PURE_VIRTUAL;
+    virtual void onRunning() = PURE_VIRTUAL;
+    virtual void onKill() = PURE_VIRTUAL;
+};
+ArduinoProtoThreadDelegate::~ArduinoProtoThreadDelegate() { }
+
+// End of ArduinoProtoThreadDelegate.hpp

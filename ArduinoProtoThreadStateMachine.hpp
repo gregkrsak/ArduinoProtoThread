@@ -1,5 +1,7 @@
-// ArduinoProtoThreadExample
-// pins.h
+// ArduinoProtoThread
+// ArduinoProtoThreadStateMachine.hpp
+//
+// Abstract class that defines a state machine for ArduinoProtoThread.
 //
 // https://github.com/gregkrsak/ArduinoProtoThread
 //
@@ -24,8 +26,33 @@
 
 #pragma once
 
-// The output for this program is just a simple flashing LED on pin 13
-#define OUTPUT_PIN_LED_A 13
-#define OUTPUT_PIN_LED_B 12
+#include "ArduinoProtoThreadDelegate.hpp"
 
-// End of pins.h
+// Used for pure virtual functions. I think this looks cleaner and is more self-documenting.
+#define PURE_VIRTUAL 0
+
+
+// Used for state machines
+enum ArduinoProtoThreadState { Start, Running, Waiting, Kill, Killed };
+
+
+//
+// Abstract class: ArduinoProtoThreadStateMachine
+// Purpose: Defines the API for a state machine.
+//
+class ArduinoProtoThreadStateMachine
+{
+  public:
+    inline virtual ~ArduinoProtoThreadStateMachine() = PURE_VIRTUAL;
+
+    virtual void changeStateTo(ArduinoProtoThreadState newState) = PURE_VIRTUAL;
+    virtual ArduinoProtoThreadState currentState();
+    virtual void delegateCallbacksTo(ArduinoProtoThreadDelegate *object);
+
+  protected:
+    ArduinoProtoThreadState state;
+    ArduinoProtoThreadDelegate *delegate;
+};
+ArduinoProtoThreadStateMachine::~ArduinoProtoThreadStateMachine() { }
+
+// End of ArduinoProtoThreadStateMachine.hpp

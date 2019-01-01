@@ -1,5 +1,7 @@
-// ArduinoProtoThreadExample
-// pins.h
+// ArduinoProtoThread
+// ArduinoProtoThread.hpp
+//
+// Defines a protothread API, allowing Arduino compatibles to multitask.
 //
 // https://github.com/gregkrsak/ArduinoProtoThread
 //
@@ -21,11 +23,35 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-
 #pragma once
 
-// The output for this program is just a simple flashing LED on pin 13
-#define OUTPUT_PIN_LED_A 13
-#define OUTPUT_PIN_LED_B 12
+#include "ArduinoProtoThreadStateMachine.hpp"
 
-// End of pins.h
+
+//
+// Class: ArduinoProtoThread
+// Derived from: ArduinoProtoThreadStateMachine
+// Purpose: Defines a protothread API, allowing Arduino compatibles to multitask.
+//
+class ArduinoProtoThread : public ArduinoProtoThreadStateMachine
+{
+  public:
+    ArduinoProtoThread() { }
+    ~ArduinoProtoThread() { }
+
+    void setExecutionIntervalTo(unsigned long newIntervalInMs);
+
+    // From ArduinoProtoThreadStateMachine
+    void changeStateTo(ArduinoProtoThreadState newState);
+    ArduinoProtoThreadState currentState();
+    void delegateCallbacksTo(ArduinoProtoThreadDelegate *object);
+    void timeSlice();
+
+  protected:
+    unsigned long timeDifference;
+    unsigned long executionInterval;
+    unsigned long previousExecutionTime;
+};
+
+
+// End of ArduinoProtoThread.hpp
