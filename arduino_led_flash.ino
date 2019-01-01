@@ -31,8 +31,49 @@
 #include "pins.h"
 
 
+// Sample delegate object
+class LedFlasher : public ArduinoProtoThreadDelegate
+{
+public:
+  LedFlasher(int pin)
+  {
+    this->outputPin = pin;
+  }
+  ~LedFlasher() { }
+  
+  void onStart()
+  {
+    pinMode(this->outputPin, OUTPUT);
+  }
+  void onRunning()
+  {
+    static bool ledState = LOW;
+    // Flip-flop the LED state
+    if (ledState == HIGH)
+    {
+      ledState = LOW;
+    }
+    else
+    {
+      ledState = HIGH;
+    }
+    // Send the state to hardware
+    digitalWrite(this->outputPin, ledState);
+  }
+  void onKill()
+  {
+    return;
+  }
+
+protected:
+  int outputPin;
+};
+
+
 // Main protothread instance
 ArduinoProtoThread *protoThread;
+// Protothread delegate for an LED flasher
+LedFlasher *flasher;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -40,14 +81,13 @@ ArduinoProtoThread *protoThread;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 void setup()
 {
-  // Initialize hardware
-  pinMode(OUTPUT_PIN_LED, OUTPUT);
-  digitalWrite(OUTPUT_PIN_LED, LOW);
-
+  // Initialize delegates
+  flasher = new LedFlasher(OUTPUT_PIN_LED);
   // Initialize protothreads
   protoThread = new ArduinoProtoThread();
+  protoThread->delegateCallbacksTo(flasher);
   protoThread->setExecutionIntervalTo(500);
-  protoThread->changeStateTo(Running);
+  protoThread->changeStateTo(Start);
 }
 
 

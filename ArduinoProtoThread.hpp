@@ -45,9 +45,11 @@ class ArduinoProtoThread : public ArduinoProtoThreadStateMachine
     // From ArduinoProtoThreadStateMachine
     void changeStateTo(ArduinoProtoThreadState newState);
     ArduinoProtoThreadState currentState();
+    void delegateCallbacksTo(ArduinoProtoThreadDelegate *object);
     void timeSlice();
 
   protected:
+    unsigned long timeDifference;
     unsigned long interval;
 
   private:

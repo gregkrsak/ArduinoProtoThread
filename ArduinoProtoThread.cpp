@@ -81,51 +81,54 @@ ArduinoProtoThreadState ArduinoProtoThread::currentState()
 
 
 //
+// Member Function: delegateCallbacksTo
+// Purpose: Sets the protothread's delegate.
+// Returns: void
+//
+void ArduinoProtoThread::delegateCallbacksTo(ArduinoProtoThreadDelegate *object)
+{
+  this->delegate = object;
+  return;
+}
+
+
+//
 // Member Function: timeSlice
-// Purpose: Executes the thread for one slice of time.
+// Purpose: Executes the protothread for one slice of time.
 // Returns: void
 //
 void ArduinoProtoThread::timeSlice()
 {
-  static bool ledState = LOW;
   unsigned long currentTime;
-  unsigned long timeDifference;
   ArduinoProtoThreadState state;
 
   currentTime = millis();
-  timeDifference = currentTime - this->previousExecutionTime;
   state = this->currentState();
 
   switch (state)
   {
-    case WillRun:
+    case Start:
+      this->delegate->onStart();
+      this->changeStateTo(Running);
       break;
     case Running:
-      // BEGIN MAIN PROGRAM LOOP //////////
-      // Does the protothread need to be executed?
+      this->delegate->onRunning();
+      this->changeStateTo(Waiting);
+      break;
+    case Waiting:
+      this->timeDifference = currentTime - this->previousExecutionTime;
       if (timeDifference > this->executionInterval())
       {
-        // Reset the variable that holds the last time it executed
         this->previousExecutionTime = currentTime;
-        // Flip-flop the LED state
-        if (ledState == HIGH)
-        {
-          ledState = LOW;
-        }
-        else
-        {
-          ledState = HIGH;
-        }
-        // Send the state to hardware
-        digitalWrite(OUTPUT_PIN_LED, ledState);
+        this->changeStateTo(Running);
       }
-      // END MAIN PROGRAM LOOP ////////////
       break;
-    case JustRan:
+    case Kill:
+      this->delegate->onKill();
+      this->changeStateTo(Killed);
       break;
-    case WillStop:
-      break;
-    case Stopped:
+    case Killed:
+      // May be deallocated at any moment
       break;
   }
 }

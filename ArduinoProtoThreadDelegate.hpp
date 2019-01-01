@@ -1,7 +1,7 @@
 // ArduinoProtoThread
-// ArduinoProtoThreadStateMachine.hpp
+// ArduinoProtoThreadDelegate.hpp
 //
-// Abstract class that defines a state machine for ArduinoProtoThread.
+// Abstract class that defines a delegate object for ArduinoProtoThread state transitionss.
 //
 // https://github.com/gregkrsak/ArduinoProtoThread
 //
@@ -26,32 +26,21 @@
 
 #pragma once
 
-#include "ArduinoProtoThreadDelegate.hpp"
+#include "ArduinoProtoThreadStateMachine.hpp"
 
 // Used for pure virtual functions. I think this looks cleaner and is more self-documenting.
 #define PURE_VIRTUAL 0
 
 
-// Used for state machines
-enum ArduinoProtoThreadState { Start, Running, Waiting, Kill, Killed };
-
-
-//
-// Abstract class: ArduinoProtoThreadStateMachine
-// Purpose: Defines the API for a state machine.
-//
-class ArduinoProtoThreadStateMachine
+class ArduinoProtoThreadDelegate
 {
-  public:
-    inline virtual ~ArduinoProtoThreadStateMachine() = PURE_VIRTUAL;
-    virtual void changeStateTo(ArduinoProtoThreadState newState) = PURE_VIRTUAL;
-    virtual ArduinoProtoThreadState currentState();
-    virtual void delegateCallbacksTo(ArduinoProtoThreadDelegate *object);
+public:
+	inline virtual ~ArduinoProtoThreadDelegate() = PURE_VIRTUAL;
 
-  protected:
-    ArduinoProtoThreadState state;
-    ArduinoProtoThreadDelegate *delegate;
+	virtual void onStart() = PURE_VIRTUAL;
+	virtual void onRunning() = PURE_VIRTUAL;
+	virtual void onKill() = PURE_VIRTUAL;
 };
-ArduinoProtoThreadStateMachine::~ArduinoProtoThreadStateMachine() { }
+ArduinoProtoThreadDelegate::~ArduinoProtoThreadDelegate() { }
 
-// End of ArduinoProtoThreadStateMachine.hpp
+// End of ArduinoProtoThreadDelegate.hpp
