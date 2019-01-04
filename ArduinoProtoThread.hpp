@@ -27,6 +27,8 @@
 
 #include "ArduinoProtoThreadStateMachine.hpp"
 
+#include "ArduinoProtoThreadDelegate.hpp"
+
 
 //
 // Class: ArduinoProtoThread
@@ -40,18 +42,19 @@ class ArduinoProtoThread : public ArduinoProtoThreadStateMachine
     ~ArduinoProtoThread() { }
 
     void setExecutionIntervalTo(unsigned long newIntervalInMs);
+    virtual void delegateCallbacksTo(ArduinoProtoThreadDelegate *object);
     void timeSlice();
 
     // BEGIN from ArduinoProtoThreadStateMachine //////////
     void changeStateTo(ArduinoProtoThreadState newState);
     ArduinoProtoThreadState currentState();
-    void delegateCallbacksTo(ArduinoProtoThreadDelegate *object);
     // END from ArduinoProtoThreadStateMachine //////////
 
   protected:
     unsigned long timeDifference;
     unsigned long executionInterval;
     unsigned long previousExecutionTime;
+    ArduinoProtoThreadDelegate *delegate;
 };
 
 

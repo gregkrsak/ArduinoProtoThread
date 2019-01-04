@@ -26,8 +26,6 @@
 
 #pragma once
 
-#include "ArduinoProtoThreadDelegate.hpp"
-
 // Used for pure virtual functions. I think this looks cleaner and is more self-documenting.
 #define PURE_VIRTUAL 0
 
@@ -47,11 +45,9 @@ class ArduinoProtoThreadStateMachine
 
     virtual void changeStateTo(ArduinoProtoThreadState newState) = PURE_VIRTUAL;
     virtual ArduinoProtoThreadState currentState();
-    virtual void delegateCallbacksTo(ArduinoProtoThreadDelegate *object);
 
   protected:
     ArduinoProtoThreadState state;
-    ArduinoProtoThreadDelegate *delegate;
 };
 ArduinoProtoThreadStateMachine::~ArduinoProtoThreadStateMachine() { }
 

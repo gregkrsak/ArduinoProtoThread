@@ -26,8 +26,6 @@
 
 #pragma once
 
-#include "ArduinoProtoThreadStateMachine.hpp"
-
 // Used for pure virtual functions. I think this looks cleaner and is more self-documenting.
 #define PURE_VIRTUAL 0
 
