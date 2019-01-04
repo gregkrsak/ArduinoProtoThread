@@ -40,12 +40,13 @@ class ArduinoProtoThread : public ArduinoProtoThreadStateMachine
     ~ArduinoProtoThread() { }
 
     void setExecutionIntervalTo(unsigned long newIntervalInMs);
+    void timeSlice();
 
-    // From ArduinoProtoThreadStateMachine
+    // BEGIN from ArduinoProtoThreadStateMachine //////////
     void changeStateTo(ArduinoProtoThreadState newState);
     ArduinoProtoThreadState currentState();
     void delegateCallbacksTo(ArduinoProtoThreadDelegate *object);
-    void timeSlice();
+    // END from ArduinoProtoThreadStateMachine //////////
 
   protected:
     unsigned long timeDifference;
