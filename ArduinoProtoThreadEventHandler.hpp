@@ -44,7 +44,7 @@ class ArduinoProtoThreadEventHandler
     virtual void onKill() = PURE_VIRTUAL;
 
     // Stores the delegation pattern context (the "this" of the parent composition object)
-		ArduinoProtoThread *__this;
+    ArduinoProtoThread *__this;
 };
 ArduinoProtoThreadEventHandler::~ArduinoProtoThreadEventHandler() { }
 
