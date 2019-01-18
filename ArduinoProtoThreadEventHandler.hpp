@@ -1,5 +1,5 @@
 // ArduinoProtoThread
-// ArduinoProtoThreadDelegate.hpp
+// ArduinoProtoThreadEventHandler.hpp
 //
 // Abstract class that defines a delegate object for ArduinoProtoThread state transitions.
 //
@@ -26,19 +26,26 @@
 
 #pragma once
 
+// Needed for ArduinoProtoThread
+#include "ArduinoProtoThread.hpp"
+class ArduinoProtoThread;
+
 // Used for pure virtual functions. I think this looks cleaner and is more self-documenting.
 #define PURE_VIRTUAL 0
 
 
-class ArduinoProtoThreadDelegate
+class ArduinoProtoThreadEventHandler
 {
   public:
-    inline virtual ~ArduinoProtoThreadDelegate() = PURE_VIRTUAL;
+    inline virtual ~ArduinoProtoThreadEventHandler() = PURE_VIRTUAL;
 
     virtual void onStart() = PURE_VIRTUAL;
     virtual void onRunning() = PURE_VIRTUAL;
     virtual void onKill() = PURE_VIRTUAL;
-};
-ArduinoProtoThreadDelegate::~ArduinoProtoThreadDelegate() { }
 
-// End of ArduinoProtoThreadDelegate.hpp
+    // Stores the delegation pattern context (the "this" of the parent composition object)
+		ArduinoProtoThread *__this;
+};
+ArduinoProtoThreadEventHandler::~ArduinoProtoThreadEventHandler() { }
+
+// End of ArduinoProtoThreadEventHandler.hpp

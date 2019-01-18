@@ -71,14 +71,15 @@ ArduinoProtoThreadState ArduinoProtoThread::currentState()
 
 
 //
-// Member Function: delegateCallbacksTo
+// Member Function: setEventHandlerTo
 // Purpose: Sets the protothread's delegate.
 // Parameters:
-//  *object: The protothread's delegate. See ArduinoProtoThreadDelegate.hpp for details.
+//  *object: The protothread's delegate. See ArduinoProtoThreadEventHandler.hpp for details.
 // Returns: void
 //
-void ArduinoProtoThread::delegateCallbacksTo(ArduinoProtoThreadDelegate *object)
+void ArduinoProtoThread::setEventHandlerTo(ArduinoProtoThreadEventHandler *object)
 {
+  object->__this = this;
   this->delegate = object;
   return;
 }
@@ -120,7 +121,7 @@ void ArduinoProtoThread::timeSlice()
       this->changeStateTo(Killed);
       break;
     case Killed:
-      // May be deallocated at any moment
+      // TODO: A future thread manager class will cleanup dead threads
       break;
   }
 }

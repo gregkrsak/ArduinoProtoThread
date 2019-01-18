@@ -25,9 +25,10 @@
 
 #pragma once
 
+// Needed for ArduinoProtoThreadStateMachine
 #include "ArduinoProtoThreadStateMachine.hpp"
-
-#include "ArduinoProtoThreadDelegate.hpp"
+// Needed for ArduinoProtoThreadEventHandler
+#include "ArduinoProtoThreadEventHandler.hpp"
 
 
 //
@@ -39,10 +40,10 @@ class ArduinoProtoThread : public ArduinoProtoThreadStateMachine
 {
   public:
     ArduinoProtoThread() { }
-    ~ArduinoProtoThread() { }
+    inline virtual ~ArduinoProtoThread();
 
     void setExecutionIntervalTo(unsigned long newIntervalInMs);
-    virtual void delegateCallbacksTo(ArduinoProtoThreadDelegate *object);
+    void setEventHandlerTo(ArduinoProtoThreadEventHandler *object);
     void timeSlice();
 
     // BEGIN from ArduinoProtoThreadStateMachine //////////
@@ -54,8 +55,9 @@ class ArduinoProtoThread : public ArduinoProtoThreadStateMachine
     unsigned long timeDifference;
     unsigned long executionInterval;
     unsigned long previousExecutionTime;
-    ArduinoProtoThreadDelegate *delegate;
+    ArduinoProtoThreadEventHandler *delegate;
 };
+ArduinoProtoThread::~ArduinoProtoThread() { }
 
 
 // End of ArduinoProtoThread.hpp

@@ -32,8 +32,8 @@
 #include "pins.h"
 
 
-// Sample delegate object
-class LedFlasher : public ArduinoProtoThreadDelegate
+// Sample event handler object
+class LedFlasher : public ArduinoProtoThreadEventHandler
 {
   public:
     LedFlasher(int pin)
@@ -83,8 +83,8 @@ void setup()
   // Initialize protothreads
   protoThreadA = new ArduinoProtoThread();
   protoThreadB = new ArduinoProtoThread();
-  protoThreadA->delegateCallbacksTo(flasherA);
-  protoThreadB->delegateCallbacksTo(flasherB);
+  protoThreadA->setEventHandlerTo(flasherA);
+  protoThreadB->setEventHandlerTo(flasherB);
   protoThreadA->setExecutionIntervalTo(1000);
   protoThreadB->setExecutionIntervalTo(100);
   protoThreadA->changeStateTo(Start);
