@@ -24,9 +24,6 @@
 
 #include "ArduinoProtoThread.hpp"
 
-// Defines hardware pins
-#include "pins.h"
-
 // Arduino library
 #include <Arduino.h>
 
